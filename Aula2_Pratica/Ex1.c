@@ -5,24 +5,27 @@ hipotenusa. O valor deverá ser impresso no programa principal*/
 #include <stdlib.h>
 #include <math.h>
 
-void ler(double *num){
+void ler(float *num){
     printf("\n\n\tInsira o valor do cateto: ");
-    scanf("%lf", num);
+    scanf("%f", num);
     system("clear");
 }
 
 int main(){
-    double cat1, cat2, hipotenusa;
+    float cat1, cat2; 
+    double hipotenusa;
     system("clear");
 
     ler(&cat1);
     ler(&cat2);
 
-    hipotenusa = sqrt((cat1 * cat1) + (cat2 * cat2));
+    hipotenusa = (double) sqrt((powf(cat1,2)+powf(cat2,2)));
 
     printf("\n\n\tA hipotenusa é: %.2f\n", hipotenusa);
 
     getchar(); // Limpa o buffer do teclado após o scanf
     getchar(); // Espera o usuário pressionar Enter para encerrar
+
+    system("clear");
     return 0;
 }

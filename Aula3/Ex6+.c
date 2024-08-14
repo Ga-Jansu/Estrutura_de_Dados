@@ -22,10 +22,15 @@ int func3(int n){
     else return(func3(n-1) + 2 * func3(n-2));
 }
 
-int main(){
-    int n = 5,aux;
+int func4(int n){
+    if(n == 1 || n == 2) return 2;
+    return (func4(n-1) + func4(n-2));
+}
 
-    aux = func1(n);
+int main(){
+    int n = 7,aux;
+
+    /*aux = func1(n);
     printf("\n\n\t%d",aux);
     getchar();
     getchar();
@@ -37,6 +42,12 @@ int main(){
     system("clear");
 
     aux = func3(n);
+    printf("\n\n\t%d",aux);
+    getchar();
+    getchar();
+    system("clear");*/
+
+    aux = func4(n);
     printf("\n\n\t%d",aux);
     getchar();
     getchar();
