@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "PILHA.h"
+#include "/home/jansen/Documents/Faculdade/4_Sem_Codigo/Estrutura_de_Dados/PILHA.h"
 
 Pilha* Inverter(Pilha *p){
     Pilha* aux;
@@ -70,10 +70,6 @@ int main(){
     imprime(p);
     p=libera(p);
     printf("\n\n\n");
-
-    getchar();
-    return 0;
-
 
 
     getchar();

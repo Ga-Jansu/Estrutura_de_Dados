@@ -1,19 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "PILHA.h"
+#include "/home/jansen/Documents/Faculdade/4_Sem_Codigo/Estrutura_de_Dados/BIBLIOTECA.h"
 
 int QtdElementos(Pilha* p){
     int cont=0;
-    for(No* q = p->Topo;q!=NULL;q=q->prox)
+    for(Nos* q = p->Topo;q!=NULL;q=q->prox)
     {
         cont++;
     }
     return cont;
-}
-
-void pause(){
-    getchar();
-    system("clear");
 }
 
 Pilha* Inverter(Pilha *p){
@@ -89,23 +84,23 @@ int main(){
     push(p,8);
     push(p,6);
     push(p,4);
-    imprime(p);
+    imprimePilha(p);
     a = QtdElementos(p);
     printf("\n\tA pilha tem %d elementos\n",a);
-    pause();
+    pauseClear();
 
-    imprime(p);
+    imprimePilha(p);
     p = Inverter(p);
-    imprime(p);
-    pause();
+    imprimePilha(p);
+    pauseClear();
 
-    imprime(p);
+    imprimePilha(p);
     printf("\n\n\tQual elemento deseja tirar: ");
     scanf("%d",&a);
     getchar();
     p = RemoveElemento(p,a);
-    imprime(p);
-    pause();
+    imprimePilha(p);
+    pauseClear();
 
     push(q,1);
     push(q,30);
@@ -115,9 +110,9 @@ int main(){
     push(q,8);
 
     printf("\n\n\tQ: ");
-    imprime(q);
+    imprimePilha(q);
     printf("\n\n\tP: ");
-    imprime(p);
+    imprimePilha(p);
 
     a = compara(q,p);
     if(a != 0)  printf("\n\n\n\tA pilha %d tem mais elementos",a);
@@ -125,22 +120,22 @@ int main(){
     {
         printf("\n\n\tAs duas pilha tem a mesma quantidade de elementos");
     }
-    pause();
+    pauseClear();
 
     printf("\n\n\tDigite um numero inteiro: ");
     scanf("%d",&a);
     getchar();
     p = Digitos(a);
     printf("\n\n\tOs digitos de %d são:",a);
-    imprime(p);
-    pause();
+    imprimePilha(p);
+    pauseClear();
 
     a = InverteDigitos(p);
     printf("\n\n\tO digito anterior era: %d",a);
 
 
-    pause();
-    p = libera(p);
-    q = libera(q);
+    pauseClear();
+    p = libera_pilha(p);
+    q = libera_pilha(q);
     return 0;
 }
