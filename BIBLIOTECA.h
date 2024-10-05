@@ -15,7 +15,7 @@ int pop (Pilha* p)              REMOVE RETORNANDO O VALOR QUE FOI REMOVIDO
 
 void libera_pilha (Pilha* p)          LIBERA A PILHA
 void imprimePilha (Pilha* p)    IMPRIMA A PILHA
-
+int tamanhoPilha (Pilha *p)
 
 Fila* CriaFila()                    CRIA A FILA
 
@@ -27,6 +27,12 @@ int RetiraFila (Fila* f)            REMOÇÃO
 Fila* liberaFila (Fila* f)          LIBERA A FILA
 
 void imprimeFila (Fila* f)          IMPRIME A FILA
+
+Arv* CriaArvore()                   CRIA A ARVORE
+
+int ArvVazia(Arv *base)             RETORNA 1 SE A ARVORE ESTIVER VAZIA
+
+void InsereArvore(Arv *Arvore, int num)     INSERE UM VALOR NA ARVORE
 
 void pauseClear()                   ESPERA O USUARIO DIGITAR QUALQUER TECLA, APÓS LIMPA A TELA
 
@@ -51,6 +57,16 @@ typedef struct fila{
     Nos * ini;
     Nos * fim;
 }Fila;
+
+typedef struct NoArvore{
+    int info;
+    struct NoArvore *esq;
+    struct NoArvore *dir;
+}NoArv;
+
+typedef struct BaseArv{
+    NoArv *raiz;
+}Arv;
 
 Pilha* CriaPilha (void)
 {
@@ -132,6 +148,16 @@ void imprimePilha (Pilha* p)
     }
 };
 
+int tamanhoPilha (Pilha* p)
+{
+    int tam=0;
+    for(Nos* aux = p->Topo;aux!=NULL;aux=aux->prox)
+    {
+        tam++;
+    }
+    return tam;
+}
+
 Fila* CriaFila ()
 {
     Fila* f = (Fila*) malloc(sizeof(Fila));
@@ -193,8 +219,7 @@ Fila* liberaFila (Fila* f)
         free(q);
         q = t;
     }
-    free(f);
-    return NULL;
+    return f;
 }
 
 void imprimeFila (Fila* f)
@@ -206,6 +231,81 @@ void imprimeFila (Fila* f)
         printf("%d - ",q->info);
     }
     printf("\n");
+}
+
+int tamanhoFila (Fila* f)
+{
+    int tam=0;
+    for(Nos* aux = f->ini;aux!=NULL;aux=aux->prox)
+    {
+        tam++;
+    }
+    return tam;
+}
+
+Arv* CriaArvore()
+{
+    Arv *aux;
+    aux = (Arv*)malloc(sizeof(Arv));
+    aux->raiz = NULL;
+    return aux;
+}
+
+int ArvVazia(Arv *base)
+{
+    if(base->raiz==NULL)    return 1;
+    return 0;
+}
+
+
+NoArv* aux_insereArvore(NoArv *no, int num){
+    int flag;
+    NoArv *Pai;
+    NoArv *novo = (NoArv*)malloc(sizeof(NoArv));
+    novo->info = num;
+    novo->esq = NULL;
+    novo->dir = NULL;
+    if(no==NULL)    return novo;
+    else
+    {
+        Pai = no;
+        flag = 0;
+        while(flag == 0)
+        {
+            if(Pai->info<num)
+            {
+                if(Pai->dir == NULL)
+                {
+                    Pai->dir = novo;
+                    flag = 1;
+                }
+                else
+                {
+                    Pai = Pai->dir;
+                }
+            }
+            else
+            {
+                if(Pai->info > num)
+                {
+                    if(Pai->esq == NULL)
+                    {
+                        Pai->esq = novo;
+                        flag = 1;
+                    }
+                    else
+                    {
+                        Pai = Pai->esq;
+                    }
+                }
+            }
+        }
+    }
+    return no;
+}
+
+void InsereArvore(Arv *Arvore, int num){
+    Arvore->raiz = aux_insereArvore(Arvore->raiz,num);
 }
 
 void pauseClear(){

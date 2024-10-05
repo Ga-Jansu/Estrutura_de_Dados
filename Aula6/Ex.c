@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "/home/jansen/Documents/Faculdade/4_Sem_Codigo/Estrutura_de_Dados/BIBLIOTECA.h"
+#include "/home/iensen/Documents/Faculdade/EstruturaDeDados/Pratica/BIBLIOTECA.h"
 
 int QtdElementos(Pilha* p){
     int cont=0;
@@ -85,7 +85,7 @@ int main(){
     push(p,6);
     push(p,4);
     imprimePilha(p);
-    a = QtdElementos(p);
+    a = tamanhoPilha(p);
     printf("\n\tA pilha tem %d elementos\n",a);
     pauseClear();
 

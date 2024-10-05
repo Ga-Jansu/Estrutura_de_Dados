@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "/home/jansen/Documents/Faculdade/4_Sem_Codigo/Estrutura_de_Dados/BIBLIOTECA.h"
+#include "/home/iensen/Documents/Faculdade/EstruturaDeDados/Pratica/BIBLIOTECA.h"
 
 int contaPar(Fila *f){
     int cont = 0;
@@ -11,21 +11,18 @@ int contaPar(Fila *f){
     return cont;
 }
 
-Fila* tira15(Fila *f){
-    Fila* Faux;
-    int aux;
-    Faux = CriaFila();
-    while(!VaziaFila(f))
+void tira15(Fila *f){
+    int aux, tam = tamanhoFila(f);
+    for(int i=0; i<tam; i++)
     {
         aux = RetiraFila(f);
-        if(aux != 15)   InsereFila(Faux, aux);
+        if(aux != 15)   InsereFila(f, aux);
     }
-    f = liberaFila(f);
-    return Faux;
 }
 
-void duasFilas(Fila*f, Fila* Fpar, Fila* Fimpar){
-    for(Nos* q = f->ini; q != NULL; q = q -> prox)
+
+void duasFilas(Nos* q, Fila* Fpar, Fila* Fimpar){
+    for(; q != NULL; q = q -> prox)
     {
         (q->info % 2 == 0) ? InsereFila(Fpar,q->info) : InsereFila(Fimpar,q->info);
     }
@@ -51,7 +48,6 @@ void duasFilasSemOriginal(Fila *f, Fila* Fpar, Fila *Fimpar){
         aux = RetiraFila(f);
         (aux % 2 == 0) ? InsereFila(Fpar,aux) : InsereFila(Fimpar,aux);
     }
-    f = liberaFila(f);
 }
 
 void duasPilhas(Fila* f, Pilha* pilhaMaior, Pilha* pilhaMenor){
@@ -79,17 +75,17 @@ int main(){
     InsereFila(f,5);
 
     imprimeFila(f);
-    int i = contaPar(f);
-    printf("\n\tEssa fila tem %d numeros pares",i);
+    int i = tamanhoFila(f);
+    printf("\n\tEssa fila tem %d elementos",i);
     pauseClear();
 
     imprimeFila(f);
-    f = tira15(f);
+    tira15(f);
     enter();
     imprimeFila(f);
     pauseClear();
 
-    duasFilas(f,&fPar,&fImpar);
+    duasFilas(f->ini,fPar,fImpar);
     printf("\n\tFila f só com par: ");
     imprimeFila(fPar);
     printf("\n\tFila f só com impar: ");
@@ -97,13 +93,13 @@ int main(){
     printf("\n\tFila f: ");
     imprimeFila(f);
     pauseClear();
-
-    printf("\n\tFila f: ");
-    imprimeFila(f);
-    inverte(f);
-    printf("\n\tFila f invertida: ");
-    imprimeFila(f);
-    pauseClear();
+//
+    //printf("\n\tFila f: ");
+    //imprimeFila(f);
+    //inverte(f);
+    //printf("\n\tFila f invertida: ");
+    //imprimeFila(f);
+    //pauseClear();
 
     fPar = liberaFila(fPar);
     fImpar = liberaFila(fImpar);
@@ -120,27 +116,26 @@ int main(){
     printf("\n\tFila f só com impar: ");
     imprimeFila(fImpar);
     pauseClear();
-
-    f = CriaFila();
-    InsereFila(f,2);   
-    InsereFila(f,20);
-    InsereFila(f,15);
-    InsereFila(f,12);
-    InsereFila(f,17);
-    InsereFila(f,23);
-    InsereFila(f,25);
-
-    printf("\n\tFila f: ");
-    imprimeFila(f);
-    duasPilhas(f,pMaior,pMenor);
-    imprimePilha(pMaior);
-    enter();
-    imprimePilha(pMenor);
-    pauseClear();
-
+//
+    //f = CriaFila();
+    //InsereFila(f,2);   
+    //InsereFila(f,20);
+    //InsereFila(f,15);
+    //InsereFila(f,12);
+    //InsereFila(f,17);
+    //InsereFila(f,23);
+    //InsereFila(f,25);
+//
+    //printf("\n\tFila f: ");
+    //imprimeFila(f);
+    //duasPilhas(f,pMaior,pMenor);
+    //imprimePilha(pMaior);
+    //enter();
+    //imprimePilha(pMenor);
+    //pauseClear();
+//
     libera_pilha(pMaior);
     libera_pilha(pMenor);
-    f = liberaFila(f);
     fPar = liberaFila(fPar);
     fImpar = liberaFila(fImpar);
     return 0;
